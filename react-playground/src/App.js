@@ -1,4 +1,5 @@
 import React from 'react';
+import Person from './Person/Person';
 import './App.css';
 
 class App extends React.Component {
@@ -13,8 +14,12 @@ class App extends React.Component {
       3.
       */
       <div className="App">
+      
         <h1> React Playground </h1>
         <p>  We are from the react app!</p>
+
+        <Person />
+      
       </div>
 
 
