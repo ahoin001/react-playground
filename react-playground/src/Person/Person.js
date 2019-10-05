@@ -5,7 +5,18 @@ import React from 'react';
 const person = (props) => {
 
     // Class components must say "this.props"
-    return <h2> I am {props.theName}! I am {props.theAge}</h2>
+    return (
+        <div>
+
+            <h2> I am {props.theName}! I am {props.theAge}</h2>
+            <p> I like Coding!</p>
+
+            {/* Allows us to get info in component element in Parent Componenet */}
+            <p> {props.children}</p>
+
+        </div>
+
+    )
 
 }
 

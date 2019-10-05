@@ -3,6 +3,20 @@ import Person from './Person/Person';
 import './App.css';
 
 class App extends React.Component {
+
+  // state cna be me manipulated to re render components with new information
+  state = {
+
+    persons: [
+
+      {name: 'Alex', age: 23},
+      {name: 'Fu', age: 33},
+      {name: 'Shirlon', age: 19}
+      
+    ]
+
+  }
+
   render() {
 
     return (
@@ -18,9 +32,9 @@ class App extends React.Component {
         <h1> React Playground </h1>
         <p>  We are from the react app!</p>
 
-        <Person theName="Alex" theAge="20" />
-        <Person theName="Ryan" theAge="29"> Some Extra Info </Person> 
-        <Person theName="Craig" theAge="18" />
+        <Person theName={this.state.persons[0].name} theAge={this.state.persons[0].age} />
+        <Person theName={this.state.persons[1].name} theAge={this.state.persons[2].age} />
+        <Person theName={this.state.persons[2].name} theAge={this.state.persons[1].age}> Some Extra Info </Person> 
       
       </div>
 
