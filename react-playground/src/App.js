@@ -18,7 +18,9 @@ class App extends React.Component {
         <h1> React Playground </h1>
         <p>  We are from the react app!</p>
 
-        <Person />
+        <Person theName="Alex" theAge="20" />
+        <Person theName="Ryan" theAge="29"> Some Extra Info </Person> 
+        <Person theName="Craig" theAge="18" />
       
       </div>
 

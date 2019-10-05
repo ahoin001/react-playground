@@ -2,9 +2,10 @@
 import React from 'react';
 
 // In simplest form, component is just a function returning JSX
-const person = () => {
+const person = (props) => {
 
-    return <h2> I am from a component called Person!</h2>
+    // Class components must say "this.props"
+    return <h2> I am {props.theName}! I am {props.theAge}</h2>
 
 }
 
