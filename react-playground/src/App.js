@@ -1,4 +1,4 @@
-// Import useState sow e could use hooks
+// Import useState hook could use hooks
 import React, { useState } from 'react';
 import Person from './Person/Person';
 import './App.css';
@@ -20,16 +20,23 @@ const App = (props) => {
 
     ],
 
-    otherStateInfo: ""
+    // Since useState doesn't merge states, its easier to seperate each state
+    //Into their own useState
+    // otherStateInfo: ""
 
   })
+
+  // Better practice to give each state their own useState
+  const [otherState,setOtherState] = useState({otherStateInfo: "Some info in a state"})
+  console.log(personState,otherState);
+
 
   const switchNameHandler = () => {
 
     console.log('Console log was clicked');
 
-    // setPersonState is what we called our function in the hook
-    // It will update the state
+    // setPersonState is what we called our function in the hook It will update the state
+    // DOES NOT MERGE STATES, you must inckude states you want to change AND states that are untouched or they will be lost
     setPersonState({
 
       // setState merges setState with our state and will only change what we made changes too 
@@ -42,6 +49,19 @@ const App = (props) => {
       ]
     })
 
+  }
+
+  // TODO HERE IS THE PRACTICE
+  const setOtherStateHandler = () => {
+
+    // function from another useState hook. having multiple hooks
+    // mitigates needing to copy ALL states when we just want to change one 
+    setOtherState({
+
+      // setState merges setState with our state and will only change what we made changes too 
+      otherStateInfo: "I changed!"
+
+    })
 
   }
 
@@ -59,6 +79,7 @@ const App = (props) => {
 
       {/* Have button call method on click */}
       <button onClick={switchNameHandler} > Switch Name </button>
+      <button onClick={setOtherStateHandler} > Switch Other State </button>
 
       <Person
         theName={personState.persons[0].name}
