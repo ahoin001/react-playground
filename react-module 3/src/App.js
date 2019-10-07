@@ -24,24 +24,40 @@ class App extends Component {
         });
     };
 
-    // event is passed to us automatically by react
     nameChangeHandler = (e) => {
         console.log('change detected!');
         this.setState({
             persons: [
-                { name: 'Max', age: 28 },
-                { name: e.target.value, age: 29 },
+                { name: e.target.value, age: 28 },
+                { name: 'Manu', age: 29 },
                 { name: 'Stephanie', age: 27 }
             ]
         });
     };
 
     render() {
+
+        // Second Way to add CSS inline in react
+        const style = {
+
+            backgroundColor: 'White',
+            font: 'inherit',
+            padding: '8px',
+            border: '1px solid',
+            cursor:'poniter'
+
+        }
+
+
         return (
             <div className="App">
                 <h1>Hi, I'm a React App</h1>
                 <p>This is really working!</p>
-                <button onClick={this.nameButtonHandler}>Switch Name</button>
+                <button 
+                style={style}
+                onClick={this.nameButtonHandler.bind(this,"Stephen!")}
+                >Switch Name</button>
+                
                 <Person
                     name={this.state.persons[0].name}
                     age={this.state.persons[0].age}
