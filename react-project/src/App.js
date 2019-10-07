@@ -38,7 +38,13 @@ class App extends Component {
 
     togglePersonsHandler = () => {
         
-
+        // Get what the current state is
+        const showPersonsComponents = this.state.showPersons;
+        
+        this.setState({
+            // Set state boolean to the oppsite of what it currently is (toggle)
+            showPersons : !showPersonsComponents
+        })
 
 
     }
@@ -97,7 +103,7 @@ class App extends Component {
                         userTyped={this.nameChangeHandler}
                     />
 
-                </div>}
+                </div> : null}
 
             </div>
         );
