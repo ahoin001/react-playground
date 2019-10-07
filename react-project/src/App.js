@@ -37,13 +37,13 @@ class App extends Component {
     };
 
     togglePersonsHandler = () => {
-        
+
         // Get what the current state is
         const showPersonsComponents = this.state.showPersons;
-        
+
         this.setState({
             // Set state boolean to the oppsite of what it currently is (toggle)
-            showPersons : !showPersonsComponents
+            showPersons: !showPersonsComponents
         })
 
 
@@ -62,18 +62,64 @@ class App extends Component {
 
         }
 
+        let persons = null;
+
+        if (this.state.showPersons) {
+
+            persons = (
+
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}
+                        // We can pass methods as props!
+                        // nameButtonClick = {() => this.nameButtonHandler()}
+
+                        // To pass a function with arguments we can pass its returned value
+                        nameButtonClick={() => this.nameButtonHandler("Meg")}
+                        userTyped={this.nameChangeHandler}
+                    />
+
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+
+                        // To pass a function with arguments
+                        nameButtonClick={this.nameButtonHandler.bind(this, "Alex!")}
+                        userTyped={this.nameChangeHandler}
+                    >
+                        My Hobbies: Racing
+                </Person>
+
+                    <Person
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}
+                        userTyped={this.nameChangeHandler}
+                    /></div>
+            )
+
+
+        }
+
         return (
             <div className="App">
+
                 <h1>Hi, I'm a React App</h1>
                 <p>This is really working!</p>
                 <button
                     style={style}
                     onClick={this.togglePersonsHandler}
-                >Switch Name</button>
+                >Toggle Persons</button>
+
+                {/*
+                    Cleaner way to reference a conditional content, 
+                    Check render scope for how it is created
+                */}
+                {persons}
 
                 {/* Conditionally render div containing persons */}
                 {/* Using teranry conditional, if state is true, then display div. if not then render null(nothing) */}
-                {this.state.showPersons ? <div>
+                {/* {this.state.showPersons ? <div>
 
                     <Person
                         name={this.state.persons[0].name}
@@ -103,7 +149,7 @@ class App extends Component {
                         userTyped={this.nameChangeHandler}
                     />
 
-                </div> : null}
+                </div> : null} */}
 
             </div>
         );
