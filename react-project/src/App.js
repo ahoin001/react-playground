@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import person from './Person/Person';
+// import person from './Person/Person';
 
 class App extends Component {
     state = {
@@ -26,15 +26,23 @@ class App extends Component {
         });
     };
 
-    nameChangeHandler = (e) => {
-        console.log('change detected!');
+    deletePersonHandler = (personIndex) => {
+
+        // This is bad because it refernces state instead of makes copy,
+        // const newPersons = this.state.persons;
+
+        // Make copy of state
+        const newPersons = [...this.state.persons];
+
+        // Make change to copy of state
+        // Remove the selected person
+        newPersons.splice(personIndex,1);
+        
+        // Update state with new state
         this.setState({
-            persons: [
-                { name: e.target.value, age: 28 },
-                { name: 'Manu', age: 29 },
-                { name: 'Stephanie', age: 27 }
-            ]
+            persons : newPersons
         });
+
     };
 
     togglePersonsHandler = () => {
@@ -69,14 +77,16 @@ class App extends Component {
         // If we have a person(s) in our array
         if (this.state.showPersons) {
 
-
             persons = (
 
                 <div>
 
                     {/* React will take the array returned by the map and display each JSX object (component) */}
-                    {this.state.persons.map(person,i => {
-                        return <Person
+                    {this.state.persons.map((person, index) => {
+                        return <Person 
+                            // index allows us to keep track of each component in list
+                            // Function will update state after person is removed
+                            click = {() => this.deletePersonHandler(index)}
                             name={person.name}
                             age={person.age}
                         />

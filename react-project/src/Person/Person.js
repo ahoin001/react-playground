@@ -10,7 +10,7 @@ const person = (props) => {
 
             {/* Method passed in from parent component */}
             <h2 onClick= {props.nameButtonClick}> I am {props.name}! I am {props.age}</h2>
-            <p> I like Coding!</p>
+            <p onClick = {props.click}> I like Coding!</p>
 
             {/* Allows us to get info in component element in Parent Componenet */}
             <p> {props.children}</p>
