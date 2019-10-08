@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import person from './Person/Person';
 
 class App extends Component {
     state = {
@@ -62,42 +63,27 @@ class App extends Component {
 
         }
 
+        // Create empty element
         let persons = null;
 
+        // If we have a person(s) in our array
         if (this.state.showPersons) {
+
 
             persons = (
 
                 <div>
-                    <Person
-                        name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}
-                        // We can pass methods as props!
-                        // nameButtonClick = {() => this.nameButtonHandler()}
 
-                        // To pass a function with arguments we can pass its returned value
-                        nameButtonClick={() => this.nameButtonHandler("Meg")}
-                        userTyped={this.nameChangeHandler}
-                    />
+                    {/* React will take the array returned by the map and display each JSX object (component) */}
+                    {this.state.persons.map(person,i => {
+                        return <Person
+                            name={person.name}
+                            age={person.age}
+                        />
+                    })}
 
-                    <Person
-                        name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-
-                        // To pass a function with arguments
-                        nameButtonClick={this.nameButtonHandler.bind(this, "Alex!")}
-                        userTyped={this.nameChangeHandler}
-                    >
-                        My Hobbies: Racing
-                </Person>
-
-                    <Person
-                        name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}
-                        userTyped={this.nameChangeHandler}
-                    /></div>
+                </div>
             )
-
 
         }
 
@@ -116,40 +102,6 @@ class App extends Component {
                     Check render scope for how it is created
                 */}
                 {persons}
-
-                {/* Conditionally render div containing persons */}
-                {/* Using teranry conditional, if state is true, then display div. if not then render null(nothing) */}
-                {/* {this.state.showPersons ? <div>
-
-                    <Person
-                        name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}
-                        // We can pass methods as props!
-                        // nameButtonClick = {() => this.nameButtonHandler()}
-
-                        // To pass a function with arguments we can pass its returned value
-                        nameButtonClick={() => this.nameButtonHandler("Meg")}
-                        userTyped={this.nameChangeHandler}
-                    />
-
-                    <Person
-                        name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-
-                        // To pass a function with arguments
-                        nameButtonClick={this.nameButtonHandler.bind(this, "Alex!")}
-                        userTyped={this.nameChangeHandler}
-                    >
-                        My Hobbies: Racing
-                </Person>
-
-                    <Person
-                        name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}
-                        userTyped={this.nameChangeHandler}
-                    />
-
-                </div> : null} */}
 
             </div>
         );
