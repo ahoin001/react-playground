@@ -40,6 +40,7 @@ class App extends Component {
         
         // Update state with new state
         this.setState({
+            // rerenders components after setting state
             persons : newPersons
         });
 
@@ -58,6 +59,8 @@ class App extends Component {
 
     }
 
+
+    // Render Happens everytime a rerender occurs (State changes with set state for example)
     render() {
 
         // Second Way to add CSS inline in react
@@ -77,16 +80,17 @@ class App extends Component {
         // If we have a person(s) in our array
         if (this.state.showPersons) {
 
+            // TODO paranthesis vs brackets ?
             persons = (
 
                 <div>
 
                     {/* React will take the array returned by the map and display each JSX object (component) */}
                     {this.state.persons.map((person, index) => {
-                        return <Person 
+                        return <Person key = {index}
                             // index allows us to keep track of each component in list
-                            // Function will update state after person is removed
-                            click = {() => this.deletePersonHandler(index)}
+                            // Function will update state after person is removed and return the value on click
+                            clickDeletePerson = {() => this.deletePersonHandler(index)}
                             name={person.name}
                             age={person.age}
                         />
@@ -97,6 +101,7 @@ class App extends Component {
 
         }
 
+        // Core template
         return (
             <div className="App">
 
