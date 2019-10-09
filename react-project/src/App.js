@@ -47,6 +47,34 @@ class App extends Component {
 
     };
 
+    nameChangedHandler = (event,id) => {
+
+        // 1. Fin index of person we want to update 
+
+        // Get find index returns the first index of element that satisifes our conditon
+        const personindex = this.state.persons.findIndex(person => {
+            return person.id === id; 
+        })
+     
+        // 2. Make a copy of the person we want to modify 
+
+        // Copy the person at the proper index
+        let newPerson = {
+            ...this.state.persons[personindex]
+        };
+
+        // 3. Modify the copy
+        newPerson.name = event.target.value;
+
+        // 4. Make copy of the state and update the person at the index with our changed version
+        const updatedPersons = [...this.state.persons];
+
+        updatedPersons[personindex] = { ...newPerson }
+
+        this.setState({ persons : updatedPersons})
+
+    }
+
     togglePersonsHandler = () => {
 
         // Get what the current state is
@@ -56,7 +84,6 @@ class App extends Component {
             // Set state boolean to the oppsite of what it currently is (toggle)
             showPersons: !showPersonsComponents
         })
-
 
     }
 
@@ -99,6 +126,10 @@ class App extends Component {
                             clickDeletePerson = {() => this.deletePersonHandler(index)}
                             name={person.name}
                             age={person.age}
+
+                            // event object is provided from onchange funtion
+                            // 
+                            userTyped={(event) => this.nameChangedHandler(event,person.id)}
                         />
                     })}
 
