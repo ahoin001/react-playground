@@ -19,9 +19,10 @@ class App extends Component {
         // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
         this.setState({
             persons: [
-                { name: newName, age: 28 },
-                { name: 'Manu', age: 29 },
-                { name: 'Stephanie', age: 27 }
+                // Unique ID's in real world dta will have them
+                { id: '0', name: newName, age: 28 },
+                { id: '1', name: 'Manu', age: 29 },
+                { id: '2', name: 'Stephanie', age: 27 }
             ]
         });
     };
@@ -87,7 +88,12 @@ class App extends Component {
 
                     {/* React will take the array returned by the map and display each JSX object (component) */}
                     {this.state.persons.map((person, index) => {
-                        return <Person key = {index}
+
+                        {/* Key attribute helps react not need to rerender entire list, and instead target whatevr we change */}
+                        return <Person 
+
+                            // We use unique ID instead of index because indexs can change as list is changed
+                            key = {person.id}
                             // index allows us to keep track of each component in list
                             // Function will update state after person is removed and return the value on click
                             clickDeletePerson = {() => this.deletePersonHandler(index)}
