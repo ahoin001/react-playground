@@ -15,6 +15,7 @@ const person = (props) => {
             {/* Allows us to get info in component element in Parent Componenet */}
             <p> {props.children}</p>
 
+            {/* Value is placeholder, onchange will be a returned value from  */}
             <input type="text" onChange={props.userTyped} value={props.name}/>
 
         </div>
