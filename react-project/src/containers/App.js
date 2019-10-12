@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../components/Persons/Person/Person';
-// import person from './Person/Person';
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
     state = {
@@ -87,7 +86,6 @@ class App extends Component {
 
     }
 
-
     // Render Happens everytime a rerender occurs (State changes with set state for example)
     render() {
 
@@ -109,33 +107,20 @@ class App extends Component {
         if (this.state.showPersons) {
 
             // TODO paranthesis vs brackets ?
-            persons = (
+            persons = 
 
                 <div>
 
+                    <Persons 
+                        persons = {this.state.persons}
+                        clickDelete = {this.deletePersonHandler}
+                        changedInput = {this.nameChangedHandler}
+
+                    />
                     {/* React will take the array returned by the map and display each JSX object (component) */}
-                    {this.state.persons.map((person, index) => {
-
-                        {/* Key attribute helps react not need to rerender entire list, and instead target whatevr we change */}
-                        return <Person 
-
-                            // We use unique ID instead of index because indexs can change as list is changed
-                            key = {person.id}
-                            // index allows us to keep track of each component in list
-                            // Function will update state after person is removed and return the value on click
-                            clickDeletePerson = {() => this.deletePersonHandler(index)}
-                            name={person.name}
-                            age={person.age}
-
-                            // event object is provided from onchange funtion
-                            // 
-                            userTyped={(event) => this.nameChangedHandler(event,person.id)}
-                        />
-                    })}
 
                 </div>
-            )
-
+            
         }
 
         // Core template
