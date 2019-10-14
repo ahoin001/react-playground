@@ -81,6 +81,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          
           title={this.props.appTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
@@ -89,7 +90,7 @@ class App extends Component {
         {persons}
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
+    
   }
 }
 
